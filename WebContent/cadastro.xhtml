@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>JSF 2.1 Tela de Cadastro</title>
+</h:head>
+
+<h:body>
+	<h2>JSF 2.1 Tela de Cadastro</h2>
+
+	<h:form>
+		<h:outputLabel for="idNome" value="msg['txt.label.nome']">
+			<h:inputText id="idNome" valeu="#{cadastroBean.nome}" 
+				required="true" label="Nome" 
+				requiredMessage="Nome é obrigatório"
+				/>
+		</h:outputLabel><br/><br/>
+		
+		<h:outputLabel for="idEmail" value="Email">
+			<h:inputText id="idEmail" valeu="#{cadastroBean.email}"> 
+				<f:validator validatorId="validator.EmailValidator" />
+			</h:inputText>
+		</h:outputLabel><br/><br/>
+		
+		<h:outputLabel for="idDataNascimento" value="Data Nascimento">
+			<h:inputText id="idDataNascimento" valeu="#{cadastroBean.dataNascimento}"
+				converterMessage="Data inválida">
+				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
+			</h:inputText>
+		</h:outputLabel><br/><br/>
+		<h:outputLabel for="idBairro" value="Bairro">
+			<h:selectOneMenu id="idBairro" label="idBairro" value="#{cadastroBean.bairro}">
+				<f:selectItem itemValue="Fixo" itemLabel="Selecione" />
+				<f:selectItems value="#{cadastroBean.listaBairros}"/>
+			</h:selectOneMenu>
+		</h:outputLabel><br/><br/>
+		<h:commandButton value="Confirma" action="confirmaCadastro"></h:commandButton>
+	</h:form>
+	
+</h:body>
+</html>
